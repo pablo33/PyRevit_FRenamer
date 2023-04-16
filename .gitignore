@@ -1,2 +1,4 @@
 \__pycache__
-\FoundationRename.pushbutton.lnk
+*.pushbutton.lnk
+*.bat
+.gitignore

@@ -6,8 +6,9 @@ __author__ = 'pablo33'
 class point():
 	"""Define a point"""
 	def __init__(self, p):
-		self.x = p[0]
-		self.y = p[1]
+		self.x = round(p[0],10)	# x coordinate
+		self.y = round(p[1],10)	# y coordinate
+		self.name = ""			# name
 
 	def __eq__(self, obj):
 		if isinstance(obj, point):
@@ -30,6 +31,7 @@ class recta():
 		self.n = None	# n correction when x=0
 		self.x = None	# it has a value if recta is x=value 
 		self.y = None	# it has a value if recta is y=value
+		self.name = ""	# Name of the line
 
 	def bytwopoints (self, a,b):
 		""" You can create a line given 2 points, each point is a point object """
@@ -77,15 +79,24 @@ class recta():
 			# self tipo de recta vertical x=constante
 			i.x = self.x
 			i.y = s.m * i.x + s.n
+			# Naming the intersection
+			i.name = s.name + self.name
 
 		elif s.m == None:
 			# s tipo de recta vertical x = constante
 			i.x = s.x
 			i.y = self.m * i.x + self.n
+			# Naming the intersection
+			i.name = self.name + s.name
 
 		else:
 			i.x = (s.n - self.n) / (self.m - s.m)
 			i.y = self.m * i.x + self.n
+			# naming the intersection
+			if self.m <= s.m:
+				i.name = self.name + s.name
+			else:
+				i.name = s.name + self.name
 
 		return (i)
 
@@ -94,3 +105,34 @@ class recta():
 		print (f"self.n = {self.n}")
 		print (f"self.x = {self.x}")
 		print (f"self.y = {self.y}")
+
+"""
+puntoa = point((-157.9762216291486, 		207.16241643172955)	,)
+puntob = point((-157.97622162914928, 	-210.01388439790136),)
+puntoc = point((212.55204836863564, 		194.12012736412038)	,)
+puntod = point((-215.60481288150888, 	194.12012736412177)	,)
+"""
+"""
+puntoa = point((-157.976, 	207.162)	,)
+puntob = point((-157.976, 	-210.013)	,)
+puntoc = point(( 212.552, 	194.120)	,)
+puntod = point((-215.6048, 	194.120)	,)
+
+rectaA, rectaB = recta(), recta()
+
+rectaA.bytwopoints(puntoa, puntob)
+puntoI = rectaA.intersect(rectaB)
+print (puntoI)
+"""
+
+puntoa = point((-157.9762216291486, 	207.16241643172955)	,)
+puntob = point((-157.97622162914928, 	 -210.01388439790136)	,)
+puntoc = point(( 212.55204836863564, 	196.94165137801156)	,)
+puntod = point((-215.60481288150888, 	196.94165137801156)	,)
+
+rectaA, rectaB = recta(), recta()
+rectaA.bytwopoints(puntoa, puntob)
+rectaB.bytwopoints(puntoc, puntod)
+
+puntoI = rectaA.intersect(rectaB)
+print (puntoI)
