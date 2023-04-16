@@ -1,3 +1,8 @@
+# Quick info
+This is a script for PyRevit.  
+Done on Revit 2022.  
+Multilingual.  
+
 # What does this script do  
 The script collec all structural foundations and informs the nearest grid intersection as the _Mark_ parameter. It  is a way to neme the structural foundations.  
 
